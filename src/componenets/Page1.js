@@ -20,19 +20,19 @@ const Page1 = () => {
           <label>Please fill in details bellow:</label>
           <input
             type="text"
-            id="fname"
+            id="field"
             name="fname"
             placeholder="First name..."
           />
-          <input type="text" id="sname" name="sname" placeholder="Surname..." />
-          <input type="email" id="email" name="email" placeholder="E-mail..." />
+          <input type="text" id="field" name="sname" placeholder="Surname..." />
+          <input type="email" id="field" name="email" placeholder="E-mail..." />
           <input
             type="text"
-            id="bank"
+            id="field"
             name="bank"
             placeholder="Bank account number..."
           />
-          <button id="cancel">Cancel</button>
+          <button /* onClick={handleClose} */ id="cancel">Cancel</button>
           <button id="create">Create</button>
         </form>
       )}
