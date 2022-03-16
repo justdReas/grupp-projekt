@@ -6,7 +6,7 @@ const Navbar = () => {
     <header>
       <nav className="sidebar">
         <ul>
-          <NavLink exact className="button" to="/">
+          <NavLink className="button" to="/">
             Page 1
           </NavLink>
         </ul>
