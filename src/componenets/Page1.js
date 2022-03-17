@@ -3,24 +3,18 @@ import React, { useState } from "react";
 import "./page1.css";
 
 const Page1 = () => {
-  const [create, setCreate] = useState(false);
-  const handleOpen = (event) => {
-    event.preventDefault();
-    setCreate(true);
-  };
+  const [turnOn, setTurnOn] = useState(false);
 
   return (
     <div>
       <h1 style={{ color: "pink" }}>Staff</h1>
-      <button onClick={handleOpen} id="createBtn">
-        Create a new account
-      </button>
-      {create && (
+      <button onClick={() => setTurnOn(!turnOn)}>{"Create account"}</button>
+      {turnOn && (
         <form id="createForm">
           <label>Please fill in details bellow:</label>
           <input
             type="text"
-            id="field"
+            id="fname"
             name="fname"
             placeholder="First name..."
           />
@@ -32,7 +26,7 @@ const Page1 = () => {
             name="bank"
             placeholder="Bank account number..."
           />
-          <button /* onClick={handleClose} */ id="cancel">Cancel</button>
+          <button onClick={() => setTurnOn(!turnOn)}>{"Cancel"}</button>
           <button id="create">Create</button>
         </form>
       )}
