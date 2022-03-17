@@ -26,7 +26,9 @@ const Page1 = () => {
             name="bank"
             placeholder="Bank account number..."
           />
-          <button onClick={() => setTurnOn(!turnOn)}>{"Cancel"}</button>
+          <button onClick={() => setTurnOn(turnOn)} id="cancel">
+            Cancel
+          </button>
           <button id="create">Create</button>
         </form>
       )}
