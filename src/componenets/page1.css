@@ -1,0 +1,10 @@
+div,
+form {
+  border: solid 1px black;
+  padding: 16px;
+}
+
+button,
+input {
+  margin: 8px;
+}

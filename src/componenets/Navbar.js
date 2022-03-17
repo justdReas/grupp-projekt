@@ -7,7 +7,7 @@ const Navbar = () => {
       <nav className="sidebar">
         <ul>
           <NavLink className="button" to="/">
-            Page 1
+            Staff
           </NavLink>
         </ul>
         <ul>
