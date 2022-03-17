@@ -1,17 +1,31 @@
 import React, { useState } from "react";
+import Staff from "./Staff";
 
 import "./page1.css";
 
 const Page1 = () => {
-  const [turnOn, setTurnOn] = useState(false);
+  const [openForm, setOpenForm] = useState(false);
+  const handleCancel = () => setOpenForm(false);
+  const handleCreate = () => {
+    setOpenForm(false);
+    addStaff();
+  };
+
+  const [staff, setStaff] = useState([]);
+
+  const addStaff = () => {
+    const newStaff = { title: "Hello World", description: "Ha en bra dag!" };
+    setStaff([...staff, newStaff]);
+  };
 
   return (
-    <div>
+    <div style={{ display: "flex", width: "85%", flexDirection: "column" }}>
       <h1 style={{ color: "pink" }}>Staff</h1>
-      <button onClick={() => setTurnOn(!turnOn)}>{"Create account"}</button>
-      {turnOn && (
+      <button onClick={() => setOpenForm(!openForm)}>{"Create account"}</button>
+      {openForm && (
         <form id="createForm">
           <label>Please fill in details bellow:</label>
+          <br />
           <input
             type="text"
             id="fname"
@@ -26,12 +40,17 @@ const Page1 = () => {
             name="bank"
             placeholder="Bank account number..."
           />
-          <button onClick={() => setTurnOn(turnOn)} id="cancel">
+          <button type="button" onClick={handleCancel} id="cancel">
             Cancel
           </button>
-          <button id="create">Create</button>
+          <button type="button" onClick={handleCreate} id="create">
+            Create
+          </button>
         </form>
       )}
+      {staff.map(({ title, description }) => (
+        <Staff title={title} description={description} />
+      ))}
     </div>
   );
 };

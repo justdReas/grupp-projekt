@@ -10,16 +10,15 @@ import Page3 from "./componenets/Page3";
 import Page4 from "./componenets/Page4";
 import Fullstackdeveloper from "./componenets/Utbildningar/Fullstackdeveloper";
 
-
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ display: "flex" }}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Page1 />} />
         <Route path="/page2" element={<Page2 />} />
-        <Route path="/page3" element={<Page3 />} >
-         < Route path="Fullstackdeveloper" element={<Fullstackdeveloper />} />
+        <Route path="/page3" element={<Page3 />}>
+          <Route path="Fullstackdeveloper" element={<Fullstackdeveloper />} />
         </Route>
         <Route path="/page4" element={<Page4 />} />
       </Routes>
