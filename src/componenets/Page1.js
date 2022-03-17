@@ -12,9 +12,12 @@ const Page1 = () => {
   };
 
   const [staff, setStaff] = useState([]);
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
 
   const addStaff = () => {
-    const newStaff = { title: "Hello World", description: "Ha en bra dag!" };
+    const newStaff = { name, surname, email };
     setStaff([...staff, newStaff]);
   };
 
@@ -31,9 +34,29 @@ const Page1 = () => {
             id="fname"
             name="fname"
             placeholder="First name..."
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
           />
-          <input type="text" id="field" name="sname" placeholder="Surname..." />
-          <input type="email" id="field" name="email" placeholder="E-mail..." />
+          <input
+            type="text"
+            id="field"
+            name="sname"
+            placeholder="Surname..."
+            value={surname}
+            onChange={(event) => {
+              setSurname(event.target.value);
+            }}
+          />
+          <input
+            type="email"
+            id="field"
+            name="email"
+            placeholder="E-mail..."
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
           <input
             type="text"
             id="field"
@@ -48,8 +71,8 @@ const Page1 = () => {
           </button>
         </form>
       )}
-      {staff.map(({ title, description }) => (
-        <Staff title={title} description={description} />
+      {staff.map(({ name, surname, email }) => (
+        <Staff name={name} surname={surname} email={email} />
       ))}
     </div>
   );
