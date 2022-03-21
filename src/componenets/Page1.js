@@ -19,7 +19,7 @@ const Page1 = () => {
     setName("");
     setSurname("");
     setEmail("");
-    idKey("");
+    setIdKey(id());
   };
 
   const [staff, setStaff] = useState([]);
@@ -29,15 +29,15 @@ const Page1 = () => {
   const [email, setEmail] = useState("");
 
   const id = () => {
-    Date.now() + Math.random();
+    return Date.now() + Math.random();
   };
 
-  const [idKey] = useState(() => id++);
+  const [idKey, setIdKey] = useState(id());
 
   const addStaff = () => {
-    const newStaff = { id, name, surname, email };
+    const newStaff = { idKey, name, surname, email };
     setStaff([...staff, newStaff]);
-    console.log(id, name, surname, email);
+    console.log(idKey, name, surname, email);
   };
 
   return (
@@ -93,8 +93,14 @@ const Page1 = () => {
           </button>
         </form>
       )}
-      {staff.map(({ id, name, surname, email }) => (
-        <Staff key={id} id={id} name={name} surname={surname} email={email} />
+      {staff.map(({ idKey, name, surname, email }) => (
+        <Staff
+          key={idKey}
+          id={idKey}
+          name={name}
+          surname={surname}
+          email={email}
+        />
       ))}
     </div>
   );
