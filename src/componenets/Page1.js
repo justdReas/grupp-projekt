@@ -5,20 +5,39 @@ import "./page1.css";
 
 const Page1 = () => {
   const [openForm, setOpenForm] = useState(false);
-  const handleCancel = () => setOpenForm(false);
+
+  const handleCancel = () => {
+    setOpenForm(false);
+    setName("");
+    setSurname("");
+    setEmail("");
+  };
+
   const handleCreate = () => {
     setOpenForm(false);
     addStaff();
+    setName("");
+    setSurname("");
+    setEmail("");
+    idKey("");
   };
 
   const [staff, setStaff] = useState([]);
+
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
 
+  const id = () => {
+    Date.now() + Math.random();
+  };
+
+  const [idKey] = useState(() => id++);
+
   const addStaff = () => {
-    const newStaff = { name, surname, email };
+    const newStaff = { id, name, surname, email };
     setStaff([...staff, newStaff]);
+    console.log(id, name, surname, email);
   };
 
   return (
@@ -34,9 +53,11 @@ const Page1 = () => {
             id="fname"
             name="fname"
             placeholder="First name..."
+            value={name}
             onChange={(event) => {
               setName(event.target.value);
             }}
+            required
           />
           <input
             type="text"
@@ -53,6 +74,7 @@ const Page1 = () => {
             id="field"
             name="email"
             placeholder="E-mail..."
+            value={email}
             onChange={(event) => {
               setEmail(event.target.value);
             }}
@@ -71,8 +93,8 @@ const Page1 = () => {
           </button>
         </form>
       )}
-      {staff.map(({ name, surname, email }) => (
-        <Staff name={name} surname={surname} email={email} />
+      {staff.map(({ id, name, surname, email }) => (
+        <Staff key={id} id={id} name={name} surname={surname} email={email} />
       ))}
     </div>
   );
