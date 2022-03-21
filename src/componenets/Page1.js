@@ -11,15 +11,17 @@ const Page1 = () => {
     setName("");
     setSurname("");
     setEmail("");
+    setBank("");
   };
 
   const handleCreate = () => {
     setOpenForm(false);
     addStaff();
+    setIdKey(id());
     setName("");
     setSurname("");
     setEmail("");
-    setIdKey(id());
+    setBank("");
   };
 
   const [staff, setStaff] = useState([]);
@@ -27,6 +29,7 @@ const Page1 = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
+  const [bank, setBank] = useState("");
 
   const id = () => {
     return Date.now() + Math.random();
@@ -35,9 +38,9 @@ const Page1 = () => {
   const [idKey, setIdKey] = useState(id());
 
   const addStaff = () => {
-    const newStaff = { idKey, name, surname, email };
+    const newStaff = { idKey, name, surname, email, bank };
     setStaff([...staff, newStaff]);
-    console.log(idKey, name, surname, email);
+    console.log(idKey, name, surname, email, bank);
   };
 
   return (
@@ -84,6 +87,10 @@ const Page1 = () => {
             id="field"
             name="bank"
             placeholder="Bank account number..."
+            value={bank}
+            onChange={(event) => {
+              setBank(event.target.value);
+            }}
           />
           <button type="button" onClick={handleCancel} id="cancel">
             Cancel
