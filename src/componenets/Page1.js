@@ -15,21 +15,37 @@ const Page1 = () => {
   };
 
   const handleCreate = () => {
-    setOpenForm(false);
-    addStaff();
-    setIdKey(id());
-    setName("");
-    setSurname("");
-    setEmail("");
-    setBank("");
+    if (error === false) {
+    }
+    if (error === true) {
+      addStaff();
+      validateInput();
+      setOpenForm(false);
+      setIdKey(id());
+      setName("");
+      setSurname("");
+      setEmail("");
+      setBank("");
+    }
+  };
+
+  const validateInput = () => {
+    if (name === "") {
+      console.log("Error");
+      setError(true);
+      setName("Error message");
+    }
+    if (surname === "") {
+      setError(true);
+    }
   };
 
   const [staff, setStaff] = useState([]);
-
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [bank, setBank] = useState("");
+  const [error, setError] = useState("");
 
   const id = () => {
     return Date.now() + Math.random();
@@ -53,7 +69,7 @@ const Page1 = () => {
           <br />
           <input
             type="text"
-            id="fname"
+            id="field"
             name="fname"
             placeholder="First name..."
             value={name}
