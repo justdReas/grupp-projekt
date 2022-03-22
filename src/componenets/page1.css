@@ -4,7 +4,42 @@ form {
   padding: 16px;
 }
 
-button,
-input {
+button {
   margin: 8px;
+  width: 8rem;
+  height: 3rem;
+}
+
+input {
+  height: 2rem;
+  padding: 0 4px;
+}
+
+.buttonsRight {
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+#createForm {
+  background-color: pink;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+#formDetails {
+  padding: 1rem 1rem 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  margin: 0.5rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 16rem;
 }

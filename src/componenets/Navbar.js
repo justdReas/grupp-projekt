@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <header>
+    <header style={{ display: "flex", width: "15%" }}>
       <nav className="sidebar">
         <ul>
           <NavLink className="button" to="/">
