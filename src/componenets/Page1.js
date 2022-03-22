@@ -15,10 +15,10 @@ const Page1 = () => {
   };
 
   const handleCreate = () => {
-    if (error === true) {
-      validateInput();
+    validateInput();
+    if (error === false) {
+      console.log("Error 3");
     } else {
-      validateInput();
       addStaff();
       setIdKey(id());
       setName("");
@@ -33,7 +33,7 @@ const Page1 = () => {
     if (name === "") {
       setError(true);
       setName("Error message");
-      console.log("Validation working");
+      console.log("Error");
     }
   };
 
@@ -93,7 +93,7 @@ const Page1 = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">E-mail</label>
               <input
                 type="email"
                 id="field"
