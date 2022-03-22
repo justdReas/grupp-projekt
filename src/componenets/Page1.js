@@ -15,28 +15,25 @@ const Page1 = () => {
   };
 
   const handleCreate = () => {
-    if (error === false) {
-    }
     if (error === true) {
-      addStaff();
       validateInput();
-      setOpenForm(false);
+    } else {
+      validateInput();
+      addStaff();
       setIdKey(id());
       setName("");
       setSurname("");
       setEmail("");
       setBank("");
+      setOpenForm(false);
     }
   };
 
   const validateInput = () => {
     if (name === "") {
-      console.log("Error");
       setError(true);
       setName("Error message");
-    }
-    if (surname === "") {
-      setError(true);
+      console.log("Validation working");
     }
   };
 
@@ -66,54 +63,70 @@ const Page1 = () => {
       {openForm && (
         <form id="createForm">
           <label>Please fill in details bellow:</label>
-          <br />
-          <input
-            type="text"
-            id="field"
-            name="fname"
-            placeholder="First name..."
-            value={name}
-            onChange={(event) => {
-              setName(event.target.value);
-            }}
-            required
-          />
-          <input
-            type="text"
-            id="field"
-            name="sname"
-            placeholder="Surname..."
-            value={surname}
-            onChange={(event) => {
-              setSurname(event.target.value);
-            }}
-          />
-          <input
-            type="email"
-            id="field"
-            name="email"
-            placeholder="E-mail..."
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
-          <input
-            type="text"
-            id="field"
-            name="bank"
-            placeholder="Bank account number..."
-            value={bank}
-            onChange={(event) => {
-              setBank(event.target.value);
-            }}
-          />
-          <button type="button" onClick={handleCancel} id="cancel">
-            Cancel
-          </button>
-          <button type="button" onClick={handleCreate} id="create">
-            Create
-          </button>
+          <div id="formDetails">
+            <div className="form-group">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="field"
+                name="fname"
+                placeholder="First name..."
+                value={name}
+                onChange={(event) => {
+                  setName(event.target.value);
+                }}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="surname">Surname</label>
+              <input
+                type="text"
+                id="field"
+                name="sname"
+                placeholder="Surname..."
+                value={surname}
+                onChange={(event) => {
+                  setSurname(event.target.value);
+                }}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="field"
+                name="email"
+                placeholder="E-mail..."
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="bank">Bank Account</label>
+              <input
+                type="text"
+                id="field"
+                name="bank"
+                placeholder="Bank account number..."
+                value={bank}
+                onChange={(event) => {
+                  setBank(event.target.value);
+                }}
+              />
+            </div>
+          </div>
+          <div className="buttonsRight">
+            <button id="createBtn" type="button" onClick={handleCancel}>
+              Cancel
+            </button>
+            <button id="createBtn" type="button" onClick={handleCreate}>
+              Create
+            </button>
+          </div>
         </form>
       )}
       {staff.map(({ idKey, name, surname, email }) => (
