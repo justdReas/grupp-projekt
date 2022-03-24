@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Staff from "./Staff";
+import StaffCard from "./StaffCard";
+import Data from "./Data";
 
 import "./addStaff.css";
 
@@ -68,10 +69,23 @@ const AddStaff = () => {
   };
 
   const idRandom = () => {
-    return Date.now() + Math.random();
+    return Date.now();
   };
 
   const [id, setId] = useState(idRandom());
+
+  const editStaff = (id, newName) => {
+    const editStaffList = staff.map((task) => {
+      if (id === task.id) {
+        return { ...task, name: newName };
+      }
+      return task;
+    });
+    setStaff(editStaffList);
+  };
+  /*
+  const [edit, setEdit] = useState(null);
+  const [editName, seteditName] = useState(""); */
 
   return (
     <div style={{ display: "flex", width: "85%", flexDirection: "column" }}>
@@ -84,12 +98,12 @@ const AddStaff = () => {
             <div className="form-name">
               <label htmlFor="name">Name</label>
               <div className="nameGrp">
-                <select>
+                {/* <select>
                   <option value="Mr"></option>
                   <option value="Mr">Mr</option>
                   <option value="Mrs">Mrs</option>
                   <option value="Ms">Ms</option>
-                </select>
+                </select> */}
 
                 <input
                   type="text"
@@ -155,14 +169,16 @@ const AddStaff = () => {
           </div>
         </form>
       )}
+      <Data />
       {staff.map(({ id, name, surname, email }) => {
         return (
-          <Staff
+          <StaffCard
             key={id}
             id={id}
             name={name}
             surname={surname}
             email={email}
+            onEdit={editStaff}
             onDelete={deleteStaff}
           />
         );

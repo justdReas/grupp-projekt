@@ -1,4 +1,4 @@
-const Staff = ({ id, name, surname, email, onDelete }) => {
+const StaffCard = ({ id, name, surname, email, onEdit, onDelete }) => {
   return (
     <div>
       <p>
@@ -6,9 +6,10 @@ const Staff = ({ id, name, surname, email, onDelete }) => {
       </p>
       {/* <p>{`ID: ${id}`}</p> */}
       <p>{email}</p>
+      <button onClick={() => onEdit(id)}>Edit</button>
       <button onClick={() => onDelete(id)}>X</button>
     </div>
   );
 };
 
-export default Staff;
+export default StaffCard;

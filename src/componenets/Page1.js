@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import AddStaff from "./Staff/AddStaff";
 
 const Page1 = () => {
