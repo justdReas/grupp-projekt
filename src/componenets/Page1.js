@@ -6,27 +6,27 @@ import "./page1.css";
 const Page1 = () => {
   const [openForm, setOpenForm] = useState(false);
 
-  const handleCancel = () => {
-    setOpenForm(false);
-    setName("");
-    setSurname("");
-    setEmail("");
-    setBank("");
-  };
-
   const handleCreate = () => {
     validateInput();
     if (error === false) {
       console.log("Error 3");
     } else {
       addStaff();
-      setIdKey(id());
+      setId(idRandom());
       setName("");
       setSurname("");
       setEmail("");
       setBank("");
       setOpenForm(false);
     }
+  };
+
+  const handleCancel = () => {
+    setOpenForm(false);
+    setName("");
+    setSurname("");
+    setEmail("");
+    setBank("");
   };
 
   const validateInput = () => {
@@ -44,17 +44,34 @@ const Page1 = () => {
   const [bank, setBank] = useState("");
   const [error, setError] = useState("");
 
-  const id = () => {
+  const addStaff = () => {
+    const newStaff = {
+      id,
+      name,
+      surname,
+      email,
+    };
+    setStaff([...staff, newStaff]);
+    // incrementCounter();
+    console.log(id, name, surname, email, bank);
+  };
+
+  /* const incrementCounter = () => {
+    setId((previousValue) => previousValue + 1);
+  }; */
+
+  const deleteStaff = (deleteId) => {
+    const filteredStaff = staff.filter(
+      (staffMember) => staffMember.id !== deleteId
+    );
+    setStaff(filteredStaff);
+  };
+
+  const idRandom = () => {
     return Date.now() + Math.random();
   };
 
-  const [idKey, setIdKey] = useState(id());
-
-  const addStaff = () => {
-    const newStaff = { idKey, name, surname, email, bank };
-    setStaff([...staff, newStaff]);
-    console.log(idKey, name, surname, email, bank);
-  };
+  const [id, setId] = useState(idRandom());
 
   return (
     <div style={{ display: "flex", width: "85%", flexDirection: "column" }}>
@@ -68,7 +85,7 @@ const Page1 = () => {
               <label htmlFor="name">Name</label>
               <div className="nameGrp">
                 <select>
-                  <option value=""></option>
+                  <option value="Mr"></option>
                   <option value="Mr">Mr</option>
                   <option value="Mrs">Mrs</option>
                   <option value="Ms">Ms</option>
@@ -138,15 +155,18 @@ const Page1 = () => {
           </div>
         </form>
       )}
-      {staff.map(({ idKey, name, surname, email }) => (
-        <Staff
-          key={idKey}
-          id={idKey}
-          name={name}
-          surname={surname}
-          email={email}
-        />
-      ))}
+      {staff.map(({ id, name, surname, email }) => {
+        return (
+          <Staff
+            key={id}
+            id={id}
+            name={name}
+            surname={surname}
+            email={email}
+            onDelete={deleteStaff}
+          />
+        );
+      })}
     </div>
   );
 };
