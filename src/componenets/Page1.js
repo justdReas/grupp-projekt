@@ -64,18 +64,27 @@ const Page1 = () => {
         <form id="createForm">
           <label>Please fill in details bellow:</label>
           <div id="formDetails">
-            <div className="form-group">
+            <div className="form-name">
               <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                id="field"
-                name="fname"
-                placeholder="First name..."
-                value={name}
-                onChange={(event) => {
-                  setName(event.target.value);
-                }}
-              />
+              <div className="nameGrp">
+                <select>
+                  <option value=""></option>
+                  <option value="Mr">Mr</option>
+                  <option value="Mrs">Mrs</option>
+                  <option value="Ms">Ms</option>
+                </select>
+
+                <input
+                  type="text"
+                  id="field"
+                  name="fname"
+                  placeholder="First name..."
+                  value={name}
+                  onChange={(event) => {
+                    setName(event.target.value);
+                  }}
+                />
+              </div>
             </div>
 
             <div className="form-group">
