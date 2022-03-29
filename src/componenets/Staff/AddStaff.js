@@ -160,15 +160,7 @@ const AddStaff = () => {
           </div>
         </form>
       )}
-      {contacts.map((contact) => (
-        <div>
-          <p>Id: {contact.id}</p>
-          <p>
-            {contact.name} {contact.surname}
-          </p>
-          <p>{contact.email}</p>
-        </div>
-      ))}
+
       {staff.map(({ id, name, surname, email }) => {
         return (
           <StaffCard

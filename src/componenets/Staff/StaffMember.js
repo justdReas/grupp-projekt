@@ -1,13 +1,19 @@
 import React, { useState, Fragment } from "react";
-import { nanoid } from "nanoid";
+// import { nanoid } from "nanoid";
 
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 
 import data from "./data.json";
+import "./staffMember.css";
 
 const StaffMember = () => {
   const [openForm, setOpenForm] = useState(false);
+  const idRandom = () => {
+    return Date.now();
+  };
+
+  const [id, setId] = useState(idRandom());
 
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
@@ -54,7 +60,7 @@ const StaffMember = () => {
     event.preventDefault();
 
     const newContact = {
-      id: nanoid(),
+      id,
       name: addFormData.name,
       surname: addFormData.surname,
       email: addFormData.email,
@@ -67,6 +73,7 @@ const StaffMember = () => {
       (input) => (input.value = "")
     );
     setOpenForm(false);
+    setId(idRandom());
   };
 
   const handleEditFormSubmit = (event) => {
@@ -126,7 +133,7 @@ const StaffMember = () => {
       </button>
       {openForm && (
         <div className="app-container">
-          <h2>Add a Contact</h2>
+          <h2 style={{ color: "pink" }}>Add a Contact</h2>
           <form onSubmit={handleAddFormSubmit}>
             <input
               type="text"
@@ -179,6 +186,7 @@ const StaffMember = () => {
               <Fragment>
                 {editContactId === contact.id ? (
                   <EditableRow
+                    id={id}
                     contact={contact}
                     editFormData={editFormData}
                     handleEditFormChange={handleEditFormChange}
@@ -186,7 +194,6 @@ const StaffMember = () => {
                   />
                 ) : (
                   <ReadOnlyRow
-                    key={contact.id}
                     contact={contact}
                     handleEditClick={handleEditClick}
                     handleDeleteClick={handleDeleteClick}
