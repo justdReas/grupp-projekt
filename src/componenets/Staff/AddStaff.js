@@ -1,24 +1,33 @@
 import React, { useState } from "react";
 import StaffCard from "./StaffCard";
-import Data from "./Data";
+import data from "./data.json";
 
 import "./addStaff.css";
 
 const AddStaff = () => {
   const [openForm, setOpenForm] = useState(false);
 
+  const [staff, setStaff] = useState([]);
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
+  const [bank, setBank] = useState("");
+  const [contacts, setContacts] = useState(data);
+  const [error, setError] = useState("");
+
   const handleCreate = () => {
     validateInput();
-    if (error === false) {
-      console.log("Error 3");
+    if (error == true) {
+      console.log("Changing");
     } else {
+      console.log("Working");
       addStaff();
+      setOpenForm(false);
       setId(idRandom());
       setName("");
       setSurname("");
       setEmail("");
       setBank("");
-      setOpenForm(false);
     }
   };
 
@@ -33,17 +42,11 @@ const AddStaff = () => {
   const validateInput = () => {
     if (name === "") {
       setError(true);
-      setName("Error message");
+      setName("Please right your first name");
       console.log("Error");
+      setOpenForm(true);
     }
   };
-
-  const [staff, setStaff] = useState([]);
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [email, setEmail] = useState("");
-  const [bank, setBank] = useState("");
-  const [error, setError] = useState("");
 
   const addStaff = () => {
     const newStaff = {
@@ -53,13 +56,8 @@ const AddStaff = () => {
       email,
     };
     setStaff([...staff, newStaff]);
-    // incrementCounter();
     console.log(id, name, surname, email, bank);
   };
-
-  /* const incrementCounter = () => {
-    setId((previousValue) => previousValue + 1);
-  }; */
 
   const deleteStaff = (deleteId) => {
     const filteredStaff = staff.filter(
@@ -83,9 +81,6 @@ const AddStaff = () => {
     });
     setStaff(editStaffList);
   };
-  /*
-  const [edit, setEdit] = useState(null);
-  const [editName, seteditName] = useState(""); */
 
   return (
     <div style={{ display: "flex", width: "85%", flexDirection: "column" }}>
@@ -98,18 +93,12 @@ const AddStaff = () => {
             <div className="form-name">
               <label htmlFor="name">Name</label>
               <div className="nameGrp">
-                {/* <select>
-                  <option value="Mr"></option>
-                  <option value="Mr">Mr</option>
-                  <option value="Mrs">Mrs</option>
-                  <option value="Ms">Ms</option>
-                </select> */}
-
                 <input
                   type="text"
                   id="field"
-                  name="fname"
+                  name="name"
                   placeholder="First name..."
+                  required="required"
                   value={name}
                   onChange={(event) => {
                     setName(event.target.value);
@@ -123,8 +112,9 @@ const AddStaff = () => {
               <input
                 type="text"
                 id="field"
-                name="sname"
+                name="surname"
                 placeholder="Surname..."
+                required="required"
                 value={surname}
                 onChange={(event) => {
                   setSurname(event.target.value);
@@ -140,6 +130,7 @@ const AddStaff = () => {
                 name="email"
                 placeholder="E-mail..."
                 value={email}
+                required="required"
                 onChange={(event) => {
                   setEmail(event.target.value);
                 }}
@@ -169,7 +160,15 @@ const AddStaff = () => {
           </div>
         </form>
       )}
-      <Data />
+      {contacts.map((contact) => (
+        <div>
+          <p>Id: {contact.id}</p>
+          <p>
+            {contact.name} {contact.surname}
+          </p>
+          <p>{contact.email}</p>
+        </div>
+      ))}
       {staff.map(({ id, name, surname, email }) => {
         return (
           <StaffCard
