@@ -7,6 +7,8 @@ import EditableRow from "./EditableRow";
 import data from "./data.json";
 
 const StaffMember = () => {
+  const [openForm, setOpenForm] = useState(false);
+
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
     name: "",
@@ -64,6 +66,7 @@ const StaffMember = () => {
     Array.from(document.querySelectorAll("input")).forEach(
       (input) => (input.value = "")
     );
+    setOpenForm(false);
   };
 
   const handleEditFormSubmit = (event) => {
@@ -116,39 +119,48 @@ const StaffMember = () => {
   };
 
   return (
-    <div className="app-container">
-      <h2>Add a Contact</h2>
-      <form onSubmit={handleAddFormSubmit}>
-        <input
-          type="text"
-          name="name"
-          required="required"
-          placeholder="Enter a name..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="surname"
-          required="required"
-          placeholder="Enter a surname..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="email"
-          name="email"
-          required="required"
-          placeholder="Enter an email address..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="bank"
-          required="required"
-          placeholder="Enter a bank account..."
-          onChange={handleAddFormChange}
-        />
-        <button type="submit">Add</button>
-      </form>
+    <div>
+      <h1 style={{ color: "pink" }}>Staff</h1>
+      <button onClick={() => setOpenForm(!openForm)}>
+        {"Add a new staff member"}
+      </button>
+      {openForm && (
+        <div className="app-container">
+          <h2>Add a Contact</h2>
+          <form onSubmit={handleAddFormSubmit}>
+            <input
+              type="text"
+              name="name"
+              required="required"
+              placeholder="Enter a name..."
+              onChange={handleAddFormChange}
+            />
+            <input
+              type="text"
+              name="surname"
+              required="required"
+              placeholder="Enter a surname..."
+              onChange={handleAddFormChange}
+            />
+            <input
+              type="email"
+              name="email"
+              required="required"
+              placeholder="Enter an email address..."
+              onChange={handleAddFormChange}
+            />
+            <input
+              type="text"
+              name="bank"
+              required="required"
+              placeholder="Enter a bank account..."
+              onChange={handleAddFormChange}
+            />
+            <button type="submit">Add</button>
+          </form>
+        </div>
+      )}
+
       <form onSubmit={handleEditFormSubmit}>
         <table>
           <thead>
@@ -161,6 +173,7 @@ const StaffMember = () => {
               <th>Action</th>
             </tr>
           </thead>
+
           <tbody>
             {contacts.map((contact) => (
               <Fragment>
@@ -173,6 +186,7 @@ const StaffMember = () => {
                   />
                 ) : (
                   <ReadOnlyRow
+                    key={contact.id}
                     contact={contact}
                     handleEditClick={handleEditClick}
                     handleDeleteClick={handleDeleteClick}

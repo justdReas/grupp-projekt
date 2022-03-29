@@ -12,7 +12,7 @@ const AddStaff = () => {
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [bank, setBank] = useState("");
-  const [contacts, setContacts] = useState(data);
+
   const [error, setError] = useState("");
 
   const handleCreate = () => {
