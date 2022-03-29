@@ -61,6 +61,9 @@ const StaffMember = () => {
 
     const newContacts = [...contacts, newContact];
     setContacts(newContacts);
+    Array.from(document.querySelectorAll("input")).forEach(
+      (input) => (input.value = "")
+    );
   };
 
   const handleEditFormSubmit = (event) => {
@@ -114,6 +117,38 @@ const StaffMember = () => {
 
   return (
     <div className="app-container">
+      <h2>Add a Contact</h2>
+      <form onSubmit={handleAddFormSubmit}>
+        <input
+          type="text"
+          name="name"
+          required="required"
+          placeholder="Enter a name..."
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="text"
+          name="surname"
+          required="required"
+          placeholder="Enter a surname..."
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="email"
+          name="email"
+          required="required"
+          placeholder="Enter an email address..."
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="text"
+          name="bank"
+          required="required"
+          placeholder="Enter a bank account..."
+          onChange={handleAddFormChange}
+        />
+        <button type="submit">Add</button>
+      </form>
       <form onSubmit={handleEditFormSubmit}>
         <table>
           <thead>
@@ -147,39 +182,6 @@ const StaffMember = () => {
             ))}
           </tbody>
         </table>
-      </form>
-
-      <h2>Add a Contact</h2>
-      <form onSubmit={handleAddFormSubmit}>
-        <input
-          type="text"
-          name="name"
-          required="required"
-          placeholder="Enter a name..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="surname"
-          required="required"
-          placeholder="Enter a surname..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="email"
-          name="email"
-          required="required"
-          placeholder="Enter an email address..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="bank"
-          required="required"
-          placeholder="Enter a bank account..."
-          onChange={handleAddFormChange}
-        />
-        <button type="submit">Add</button>
       </form>
     </div>
   );
