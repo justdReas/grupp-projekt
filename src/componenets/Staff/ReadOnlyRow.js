@@ -2,13 +2,15 @@ import React from "react";
 
 const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
   return (
-    <tr>
-      <td>{contact.id}</td>
-      <td>{contact.name}</td>
-      <td>{contact.surname}</td>
-      <td>{contact.email}</td>
-      <td>{contact.bank}</td>
-      <td>
+    <div>
+      <div>
+        <p>ID: {contact.id}</p>
+        <p>
+          Name: {contact.name} {contact.surname}
+        </p>
+        <p>E-mail: {contact.email}</p>
+      </div>
+      <div>
         <button
           type="button"
           onClick={(event) => handleEditClick(event, contact)}
@@ -18,8 +20,8 @@ const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
         <button type="button" onClick={() => handleDeleteClick(contact.id)}>
           Delete
         </button>
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 };
 

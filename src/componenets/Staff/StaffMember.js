@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from "react";
-// import { nanoid } from "nanoid";
 
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
@@ -60,6 +59,7 @@ const StaffMember = () => {
     event.preventDefault();
 
     const newContact = {
+      key: id,
       id,
       name: addFormData.name,
       surname: addFormData.surname,
@@ -169,40 +169,27 @@ const StaffMember = () => {
       )}
 
       <form onSubmit={handleEditFormSubmit}>
-        <table>
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th>Surname</th>
-              <th>Email</th>
-              <th>Bank</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {contacts.map((contact) => (
-              <Fragment>
-                {editContactId === contact.id ? (
-                  <EditableRow
-                    id={id}
-                    contact={contact}
-                    editFormData={editFormData}
-                    handleEditFormChange={handleEditFormChange}
-                    handleCancelClick={handleCancelClick}
-                  />
-                ) : (
-                  <ReadOnlyRow
-                    contact={contact}
-                    handleEditClick={handleEditClick}
-                    handleDeleteClick={handleDeleteClick}
-                  />
-                )}
-              </Fragment>
-            ))}
-          </tbody>
-        </table>
+        <div>
+          {contacts.map((contact) => (
+            <Fragment>
+              {editContactId === contact.id ? (
+                <EditableRow
+                  id={id}
+                  contact={contact}
+                  editFormData={editFormData}
+                  handleEditFormChange={handleEditFormChange}
+                  handleCancelClick={handleCancelClick}
+                />
+              ) : (
+                <ReadOnlyRow
+                  contact={contact}
+                  handleEditClick={handleEditClick}
+                  handleDeleteClick={handleDeleteClick}
+                />
+              )}
+            </Fragment>
+          ))}
+        </div>
       </form>
     </div>
   );

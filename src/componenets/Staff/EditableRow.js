@@ -7,9 +7,10 @@ const EditableRow = ({
   handleCancelClick,
 }) => {
   return (
-    <tr>
-      <td>{contact.id}</td>
-      <td>
+    <div>
+      <p>ID: {contact.id}</p>
+      <p>
+        Name:
         <input
           type="text"
           required="required"
@@ -18,8 +19,6 @@ const EditableRow = ({
           value={editFormData.name}
           onChange={handleEditFormChange}
         ></input>
-      </td>
-      <td>
         <input
           type="text"
           required="required"
@@ -28,8 +27,10 @@ const EditableRow = ({
           value={editFormData.surname}
           onChange={handleEditFormChange}
         ></input>
-      </td>
-      <td>
+      </p>
+
+      <p>
+        E-mail:{" "}
         <input
           type="email"
           required="required"
@@ -38,24 +39,14 @@ const EditableRow = ({
           value={editFormData.email}
           onChange={handleEditFormChange}
         ></input>
-      </td>
-      <td>
-        <input
-          type="text"
-          required="required"
-          placeholder="Enter a bank account..."
-          name="bank"
-          value={editFormData.bank}
-          onChange={handleEditFormChange}
-        ></input>
-      </td>
-      <td>
+      </p>
+      <div>
         <button type="submit">Save</button>
         <button type="button" onClick={handleCancelClick}>
           Cancel
         </button>
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 };
 
