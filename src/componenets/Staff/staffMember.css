@@ -5,30 +5,16 @@
   padding: 1rem;
 }
 
-/* table {
-  border-collapse: collapse;
-  width: 80%;
-} */
-
-th,
-td {
-  border: 1px solid #ffffff;
-  text-align: left;
-  padding: 8px;
-  font-size: 32px;
-}
-
 form {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
 }
 
-form td:last-child {
+/* form td:last-child {
   display: flex;
   justify-content: space-evenly;
-}
+} */
 
-form * {
-  font-size: 28px;
+.card {
 }

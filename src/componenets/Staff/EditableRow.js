@@ -7,7 +7,7 @@ const EditableRow = ({
   handleCancelClick,
 }) => {
   return (
-    <div>
+    <div className="card">
       <p>ID: {contact.id}</p>
       <p>
         Name:

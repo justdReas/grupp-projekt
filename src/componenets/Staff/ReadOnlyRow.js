@@ -2,7 +2,7 @@ import React from "react";
 
 const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
   return (
-    <div>
+    <div className="card">
       <div>
         <p>ID: {contact.id}</p>
         <p>
