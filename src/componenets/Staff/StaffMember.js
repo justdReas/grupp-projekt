@@ -4,6 +4,7 @@ import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 
 import data from "./data.json";
+
 import "./staffMember.css";
 
 const StaffMember = () => {
@@ -59,7 +60,6 @@ const StaffMember = () => {
     event.preventDefault();
 
     const newContact = {
-      key: id,
       id,
       name: addFormData.name,
       surname: addFormData.surname,
@@ -171,10 +171,9 @@ const StaffMember = () => {
       <form onSubmit={handleEditFormSubmit}>
         <div>
           {contacts.map((contact) => (
-            <Fragment>
+            <Fragment key={contact.id}>
               {editContactId === contact.id ? (
                 <EditableRow
-                  id={id}
                   contact={contact}
                   editFormData={editFormData}
                   handleEditFormChange={handleEditFormChange}
