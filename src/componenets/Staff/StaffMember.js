@@ -132,7 +132,7 @@ const StaffMember = () => {
         {"Add a new staff member"}
       </button>
       {openForm && (
-        <div className="app-container">
+        <div className="createForm">
           <h2 style={{ color: "pink" }}>Add a Contact</h2>
           <form onSubmit={handleAddFormSubmit}>
             <input
