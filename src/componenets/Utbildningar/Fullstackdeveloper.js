@@ -3,7 +3,7 @@ import React from "react";
 function Fullstackdeveloper() {
     return (
       <div>
-        <h1>Fullstackdeveloper</h1>
+        <h1>Fullstack Developer</h1>
       </div>
     );
   }
