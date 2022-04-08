@@ -1,3 +1,5 @@
+// Andreas Benckert
+
 import React from "react";
 
 import StaffMember from "./Staff/StaffMember";

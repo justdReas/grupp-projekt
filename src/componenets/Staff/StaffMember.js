@@ -1,13 +1,24 @@
-import React, { useState, Fragment } from "react";
+//  Andreas Benckert
+
+import React, { useState, useEffect, Fragment } from "react";
+import staffs from "./api";
 
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 
-import data from "./data.json";
-
 import "./staffMember.css";
 
 const StaffMember = () => {
+  const [contacts, setContacts] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const { data } = await staffs.get("/staffs");
+      setContacts(data);
+    }
+    fetchData();
+  }, []);
+
   const [openForm, setOpenForm] = useState(false);
   const idRandom = () => {
     return Date.now();
@@ -15,7 +26,6 @@ const StaffMember = () => {
 
   const [id, setId] = useState(idRandom());
 
-  const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
     name: "",
     surname: "",
@@ -68,7 +78,9 @@ const StaffMember = () => {
     };
 
     const newContacts = [...contacts, newContact];
+
     setContacts(newContacts);
+
     Array.from(document.querySelectorAll("input")).forEach(
       (input) => (input.value = "")
     );
@@ -111,6 +123,10 @@ const StaffMember = () => {
     setEditFormData(formValues);
   };
 
+  const handleCloseClick = () => {
+    setOpenForm(false);
+  };
+
   const handleCancelClick = () => {
     setEditContactId(null);
   };
@@ -119,6 +135,7 @@ const StaffMember = () => {
     const newContacts = [...contacts];
 
     const index = contacts.findIndex((contact) => contact.id === contactId);
+    staffs.delete(`/${contactId}`);
 
     newContacts.splice(index, 1);
 
@@ -164,6 +181,9 @@ const StaffMember = () => {
               onChange={handleAddFormChange}
             />
             <button type="submit">Add</button>
+            <button type="button" onClick={handleCloseClick}>
+              Cancel
+            </button>
           </form>
         </div>
       )}
