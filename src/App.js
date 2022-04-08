@@ -1,8 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-
 import "./App.css";
-
 import Navbar from "./componenets/Navbar";
 import Page1 from "./componenets/Page1";
 import Page2 from "./componenets/Page2";

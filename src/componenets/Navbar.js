@@ -17,7 +17,7 @@ const Navbar = () => {
         </ul>
         <ul>
           <NavLink className="button" to="/page3">
-            Page 3
+            Utbildningar
           </NavLink>
         </ul>
         <ul>
